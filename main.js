@@ -10,15 +10,12 @@ if (!$fileInput || !$dropzone) {
 }
 
 async function readFile($file) {
-  const reader = new FileReader();
-  reader.onprogress = (e) => {
-    console.log(e.loaded, e.total);
-  };
   return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
     reader.onload = () => {
       resolve(reader.result);
     };
-    reader.onerror = reject;
     reader.readAsText($file);
   });
 }
@@ -100,14 +97,20 @@ function downloadCsv(content, fileName) {
 async function handleFile($file) {
   if (handling) return;
 
-  setHandling(true);
-  const fileContent = await readFile($file);
-  const fileName = $file.name.replace(/\.xml$/, '.csv')
-
-  const rows = await parse(fileContent);
-  const csvContent = createCsv(rows);
-  downloadCsv(csvContent, fileName);
-  setHandling(false);
+  try {
+    setHandling(true);
+    const fileContent = await readFile($file);
+    const fileName = $file.name.replace(/\.xml$/, '.csv')
+  
+    const rows = await parse(fileContent);
+    const csvContent = createCsv(rows);
+    downloadCsv(csvContent, fileName);
+  } catch(e) {
+    console.error('Error trying to handle file:', e);
+    alert('Error transforming file.');
+  } finally {
+    setHandling(false);
+  }
 }
 
 function stopEvent(e) {
@@ -119,7 +122,11 @@ function drop(e) {
   stopEvent(e);
 
   const files = e.dataTransfer.files;
-  console.log(files);
+  if (!files.length) return;
+  if (files[0].type !== 'text/xml') {
+    alert('Invalid file type. Please provide an XML file.');
+    return;
+  }
 
   handleFile(files[0]);
 }
