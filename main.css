@@ -86,4 +86,12 @@ input#file {
 footer {
   grid-row: 3;
   font-size: 12px;
+
+  a {
+    color: var(--black);
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
