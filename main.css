@@ -1,0 +1,89 @@
+html {
+  --white: rgba(255, 255, 255, 0.87);
+  --black: #242424;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  grid-template-rows: 40px 1fr 40px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 20px;
+
+  color-scheme: light dark;
+  color: var(--white);
+  background-color: var(--black);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+input#file {
+  display: none;
+}
+
+#dropzone {
+  grid-row: 2;
+  width: 320px;
+  height: 200px;
+  border: 2px solid var(--white);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 22px;
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 20px var(--white);
+  }
+
+  p {
+    font-weight: bold;
+    margin: 0.5em 0;
+  }
+
+  .spinner {
+    display: none;
+    animation: spin 1s linear infinite;
+
+    svg {
+      vertical-align: top;
+    }
+  }
+
+  &.handling {
+    cursor: wait;
+
+    .spinner {
+      display: block;
+    }
+
+    .content {
+      display: none;
+    }
+  }
+}
+
+footer {
+  grid-row: 3;
+  font-size: 12px;
+}

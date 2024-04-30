@@ -1,0 +1,21 @@
+{
+  "name": "pricing-xml-2-csv",
+  "version": "1.0.0",
+  "description": "webpage to transform pricing xml file to a csv file",
+  "main": "index.html",
+  "dependencies": {
+    "saxen": "^10.0.0"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoavmatchulsky/pricing-xml-2-csv.git"
+  },
+  "author": "yoavi <y@yoavi.codes>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yoavmatchulsky/pricing-xml-2-csv/issues"
+  },
+  "homepage": "https://github.com/yoavmatchulsky/pricing-xml-2-csv"
+}
