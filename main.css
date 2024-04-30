@@ -88,7 +88,7 @@ footer {
   font-size: 12px;
 
   a {
-    color: var(--black);
+    color: var(--white);
     text-decoration: underline;
     &:hover {
       text-decoration: none;
