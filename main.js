@@ -1,4 +1,4 @@
-import { Parser } from 'saxen';
+import { Parser } from 'https://cdn.skypack.dev/saxen';
 
 const csvHeaderRow = ['Price Book ID,Currency,Product Id,Amount'];
 const $fileInput = document.getElementById('file');
